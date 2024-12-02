@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        // Function to filter attendance records based on selected subject and section
+        function filterAttendance() {
+            const subject = document.getElementById("subject").value;
+            const section = document.getElementById("section").value;
+            const rows = document.querySelectorAll("#attendance-table tbody tr");
+
+            rows.forEach(row => {
+                const rowSubject = row.querySelector(".subject").textContent;
+                const rowSection = row.querySelector(".section").textContent;
+
+                // Show or hide rows based on the selected subject and section
+                if ((subject === "All" || rowSubject === subject) && (section === "All" || rowSection === section)) {
+                    row.style.display = "";
+                } else {
+                    row.style.display = "none";
+                }
+            });
+        }
+    </script>
+</head>
+<body>
+    <div class="dashboard-container">
+        <h1>Student Dashboard</h1>
+        
+        <!-- Dropdown for selecting subject and section -->
+        <div class="filters">
+            <label for="subject">Select Subject:</label>
+            <select id="subject" onchange="filterAttendance()">
+                <option value="All">All</option>
+                <option value="Math">Math</option>
+                <option value="English">English</option>
+                <option value="Science">Science</option>
+                <option value="PE">PE</option>
+            </select>
+
+            <label for="section">Select Section:</label>
+            <select id="section" onchange="filterAttendance()">
+                <option value="All">All</option>
+                <option value="NS">NS</option>
+                <option value="WMAD">WMAD</option>
+                <option value="BPO">BPO</option>
+                <option value="BA">BA</option>
+            </select>
+        </div>
+
+        <p>Your attendance records:</p>
+
+        <!-- Attendance table -->
+        <table id="attendance-table">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Subject</th>
+                    <th>Section</th>
+                    <th>Status</th>
+                    <th>Reason</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Placeholder data for demo purposes -->
+                <tr>
+                    <td>2024-12-01</td>
+                    <td class="subject">Math</td>
+                    <td class="section">NS</td>
+                    <td>Present</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>2024-12-02</td>
+                    <td class="subject">English</td>
+                    <td class="section">WMAD</td>
+                    <td>Absent</td>
+                    <td>Medical Leave</td>
+                </tr>
+                <tr>
+                    <td>2024-12-03</td>
+                    <td class="subject">Science</td>
+                    <td class="section">BPO</td>
+                    <td>Present</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>2024-12-04</td>
+                    <td class="subject">PE</td>
+                    <td class="section">BA</td>
+                    <td>Present</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>2024-12-05</td>
+                    <td class="subject">Math</td>
+                    <td class="section">NS</td>
+                    <td>Absent</td>
+                    <td>Illness</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
